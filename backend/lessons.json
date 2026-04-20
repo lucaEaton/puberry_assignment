@@ -1,0 +1,44 @@
+[
+    {
+        "lesson_id": 1,
+        "title": "Lesson 1",
+        "content": "Addition",
+        "quiz": {
+            "questions": [
+                {
+                    "question_text": "What is 2+2",
+                    "answer": "4"
+                },
+                {
+                    "question_text": "Is 10 - 2 = 8 ?",
+                    "answer": "True"
+                },
+                {
+                    "question_text": "What is 20 + 74",
+                    "answer": "94"
+                }
+            ]
+        }
+    },
+    {
+        "lesson_id": 2,
+        "title": "Lesson 2",
+        "content": "Subtraction",
+        "quiz": {
+            "questions": [
+                {
+                    "question_text": "10-3",
+                    "answer": "7"
+                },
+                {
+                    "question_text": "Is 1 - 5 = 4 ?",
+                    "answer": "False"
+                },
+                {
+                    "question_text": "1000-250",
+                    "answer": "750"
+                }
+            ]
+        }
+    }
+]
