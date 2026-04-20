@@ -18,7 +18,9 @@
                     "answer": "94"
                 }
             ]
-        }
+        },
+      "is_complete": false,
+      "current_score": 0.0
     },
     {
         "lesson_id": 2,
@@ -39,6 +41,8 @@
                     "answer": "750"
                 }
             ]
-        }
+        },
+      "is_complete": false,
+      "current_score": 0.0
     }
 ]
