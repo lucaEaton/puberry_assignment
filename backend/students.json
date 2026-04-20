@@ -2,6 +2,7 @@
   {
     "id": 1,
     "name": "Luca",
+    "user_points": 0,
     "lessons": [
       {"lesson_id": 1},
       {"lesson_id": 2}

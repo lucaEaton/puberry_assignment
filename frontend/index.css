@@ -33,7 +33,39 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
+.points {
+    display: flex;
+    color: cornflowerblue;
+    font-family: 'Segoe UI', sans-serif;
+    gap: 8px;
+}
+
 .lesson_title{
     font-family: 'Segoe UI', sans-serif;
      color: cornflowerblue;
+}
+
+.lesson-card {
+    background: white;
+    border: 2px solid cornflowerblue;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 10px;
+    width: 300px;;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-card h3 {
+    font-family: 'Segoe UI', sans-serif;
+    color: cornflowerblue;
+    margin-bottom: 8px;
+}
+
+.lesson-card p {
+    font-family: 'Segoe UI', sans-serif;
+    color: gray;
+}
+
+.lesson_blocks{
+    display:flex;
 }

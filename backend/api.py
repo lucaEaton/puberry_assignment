@@ -14,7 +14,7 @@ app.add_middleware(
 
 # this reads our JSON file including the lessons we wish to show
 # on our site for the student to take
-def load_lessons(lessons_path: str = "lessons.json"):
+def load_lessons(lessons_path: str = "./backend/lessons.json"):
     with open(lessons_path) as f:
         return json.load(f)
 
@@ -72,8 +72,8 @@ def start():
 
 # loads the entire lesson plan from lessons.json
 @app.get("/lessons")
-def get_lessons(lessons_path: str):
-    return load_lessons(lessons_path)
+def get_lessons():
+    return load_lessons()
 
 # grabs the json payload for a student based on ID
 @app.get("/students/{student_id}")
