@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "name": "Luca",
+    "lessons": [
+      {"lesson_id": 1},
+      {"lesson_id": 2}
+    ]
+  }
+]

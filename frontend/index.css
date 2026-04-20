@@ -1,0 +1,39 @@
+
+
+.page {
+    background: mintcream;
+}
+.header {
+    padding: 30px;
+    text-align: center;
+}
+
+.main_tile {
+    color: cornflowerblue;
+    border: 2px solid cornflowerblue;
+    border-radius: 12px;
+    padding: 8px 20px;
+    display: inline-block;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 1px cornflowerblue;
+    box-shadow: 0 0 10px cornflowerblue;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.welcome {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    color: cornflowerblue;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.lesson_title{
+    font-family: 'Segoe UI', sans-serif;
+     color: cornflowerblue;
+}

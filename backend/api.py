@@ -1,13 +1,25 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 import json
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # this reads our JSON file including the lessons we wish to show
 # on our site for the student to take
 def load_lessons(lessons_path: str = "lessons.json"):
     with open(lessons_path) as f:
+        return json.load(f)
+
+def load_students(students_path: str = "./backend/students.json"):
+    with open(students_path) as f:
         return json.load(f)
 
 # this would generally hold the correct answer for a given question
@@ -55,10 +67,21 @@ class StudentProfile(BaseModel):
     lessons: list[Lesson]
 
 @app.get("/")
-def read_root():
+def start():
     return {"Hello": "World"}
 
+# loads the entire lesson plan from lessons.json
 @app.get("/lessons")
 def get_lessons(lessons_path: str):
     return load_lessons(lessons_path)
+
+# grabs the json payload for a student based on ID
+@app.get("/students/{student_id}")
+def get_student(student_id: int):
+    students = load_students()
+    for student in students:
+        if student["id"] == student_id:
+            return student
+    raise HTTPException(status_code=404, detail="Student not found")
+
 
