@@ -12,14 +12,11 @@ body {
 
 .quiz-title {
     color: cornflowerblue;
-    border: 2px solid cornflowerblue;
-    border-radius: 12px;
     padding: 12px 40px;
     display: inline-block;
     font-size: 3rem;
     letter-spacing: 2px;
-    text-shadow: 0 0 1px cornflowerblue;
-    box-shadow: 0 0 10px cornflowerblue;
+    text-shadow: 0 0 10px #a2adc5;
     font-family: 'Segoe UI', sans-serif;
 }
 
@@ -30,7 +27,7 @@ body {
     padding: 40px;
     margin: 20px;
     width: 700px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(166, 163, 163, 0.1);
     font-family: 'Segoe UI', sans-serif;
 }
 
