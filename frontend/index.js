@@ -62,7 +62,10 @@ function getLessonPlans() {
             })
         })
 }
-
+/*
+* When testing it was really annoying to constanly go back to the JSON to bring everything back to zero, so with a Reset Button it not only 
+* makes it easier for me, but easier for the testers to find bugs or simpliy just test the application loop without having to touch a single line of JSON
+*/
 function resetStats() {
     fetch("http://127.0.0.1:8000/reset", { method: "PUT" })
         .then(response => response.json())
