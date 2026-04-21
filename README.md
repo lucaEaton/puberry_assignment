@@ -93,24 +93,28 @@ mark sure to have
 ### clone repo
 ``` bash
     git clone https://github.com/lucaEaton/puberry_assignment
-    cd puberry_backend_assignment
+    cd puberry_assignment
 ```
 
 ### set up the venu
+#### note i use python3 because I use a mac
 ```bash
-    python -m venv venv
+    python3 -m venv venv
     source venv/bin/activate
     pip install fastapi uvicorn pydantic
 ```
 
-### run the backend
+### open another termianl and run the backend
 ```bash
+    cd puberry_assignment
+    source venv/bin/activate
     uvicorn backend.api:app --reload
 ```
 Backend runs at `http://127.0.0.1:8000`
 
-### run the frontend
+### open another termianl and run the frontend
 ```bash
+    cd puberry_assignment/frontend
     npm install
     npm run dev
 ```
