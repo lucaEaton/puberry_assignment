@@ -3,7 +3,7 @@ let qIndex = 0
 let score = 0.0
 let userAnswers = []
 /*
- * we wait till the browser has loaded
+ * we wait till the browser has loaded to then grab the lesson, rename the tab and display the question
  */
 document.addEventListener("DOMContentLoaded", function () {
     fetch(`http://127.0.0.1:8000/lessons`)
@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 /*
- * this just lets me take the content out of the JSON being the question
+ * this just lets me take the content out of the JSON being the question and create divs to 
+ * further display on the frontend, if checks to see whether its a T/F Q or simpliy a multiple choice
  */
 function displayQ() {
     document.getElementById("questions_block").innerHTML = ""
@@ -59,8 +60,9 @@ function displayQ() {
     document.getElementById("questions_block").appendChild(div)
 }
 
-// this method allows for cleaner reading code as using this before without this method, was adding major length
-// to our script
+/*
+ * this method allows for cleaner reading code as using this before without this method, was adding major length
+ */ to our script
 function showComplete(message = "") {
     document.getElementById("questions_block").innerHTML = `
         <div class="question-card">
@@ -72,6 +74,18 @@ function showComplete(message = "") {
     `
 }
 
+/*
+* The logic here is that we'll keep iterating through questions until we've done them all
+* then send a POST request to our FastAPI to submit answers and do any updating if needed
+* we then check if we've 
+* one, passed and this wasn't completed before or now we've passed with a score higher than 70
+* two, if we've completed this before 
+* three, we've failed and got lower than a 70 and we don't recieved the coins 
+*
+* depending on these threee conditions determines the print statement along with whether or not we server points to the user or not
+*
+* I have a catch just incase the POST fails, they are still able to leave the lesson.
+*/
 function submitAnswer(a) {
     userAnswers.push(a)
     qIndex++
