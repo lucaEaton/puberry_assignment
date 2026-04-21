@@ -1,5 +1,8 @@
-.body{
+body {
     background: mintcream;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 .header {
     padding: 30px;
@@ -10,6 +13,7 @@
     color: cornflowerblue;
     border: 2px solid cornflowerblue;
     border-radius: 12px;
+    background: white;
     padding: 8px 20px;
     display: inline-block;
     font-size: 2rem;
@@ -36,11 +40,13 @@
     color: cornflowerblue;
     font-family: 'Segoe UI', sans-serif;
     gap: 8px;
+    padding-left: 20px;
 }
 
 .lesson_title{
     font-family: 'Segoe UI', sans-serif;
      color: cornflowerblue;
+    padding-left: 20px;
 }
 
 .lesson-card {
@@ -73,4 +79,33 @@
 
 .lesson_blocks{
     display:flex;
+}
+
+.profile-button, .reset-button {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: white;
+    border: 2px solid cornflowerblue;
+    border-radius: 12px;
+    padding: 14px 40px;
+    margin: 10px 10px 0 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: cornflowerblue;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.profile-button:hover, .reset-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(100, 149, 237, 0.3);
+}
+
+.header-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }

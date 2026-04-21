@@ -43,7 +43,7 @@ function getLessonPlans() {
                             `
                                     <h3>${lesson.title}: ${lesson.content}</h3>
                                     ${lesson.is_complete ? `<p>✅ Completed! Highest Score: ${lesson.current_score}%</p>`
-                                : `<p>Highest Score: ${lesson.current_score}%</p>`}
+                                : `<p>Highest Score: ${Math.round(lesson.current_score)}%</p>`}
                                     `
                     } else {
                         div.innerHTML =
@@ -60,5 +60,14 @@ function getLessonPlans() {
                 }
                 document.getElementById("lesson_blocks").appendChild(div)
             })
+        })
+}
+
+function resetStats() {
+    fetch("http://127.0.0.1:8000/reset", { method: "PUT" })
+        .then(response => response.json())
+        .then(() => {
+            sessionStorage.clear()  // clears points from session
+            window.location.reload()
         })
 }

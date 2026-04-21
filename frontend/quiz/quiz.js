@@ -95,11 +95,11 @@ function submitAnswer(a) {
                     let newPoints = currentPoints + 10
                     sessionStorage.setItem("points", newPoints)
                     fetch(`http://127.0.0.1:8000/students/1/points?points=${newPoints}`, {method: "PUT"})
-                    showComplete(`<p>You've earned 10 points! Total: ${newPoints}</p>`)
+                    showComplete(`<p>You've earned 10 coins! Total: ${newPoints}</p>`)
                 } else if (result.passed) {
                     showComplete(`<p></p>`)
                 } else {
-                    showComplete(`<p>Need at least 70% to earn points. Try again!</p>`)
+                    showComplete(`<p>Need at least 70% to earn coins. Try again!</p>`)
                 }
             })
             .catch(error => {

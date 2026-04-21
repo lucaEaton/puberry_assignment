@@ -177,6 +177,29 @@ def update_points(student_id: int, points: int):
 
 
 """
+ for testing purposes so that who ever trys this demo
+ doesn't need to actively touch the JSON, they can wipe the data to 
+ "try and break" my application to either find bugs or to test multiple features
+"""
+
+
+@app.put("/reset")
+def reset():
+    lessons = load_lessons()
+    for lesson in lessons:
+        lesson["is_complete"] = False
+        lesson["current_score"] = 0.0
+    save_lessons(lessons)
+
+    students = load_students()
+    for student in students:
+        student["user_points"] = 0
+    save_students(students)
+
+    return {"message": "Reset successful"}
+
+
+"""
  this route accepts a list of answers from the frontend and validates them
  server side, this is more secure than checking answers on the frontend
  as it prevents the correct answers from being exposed to the client.
