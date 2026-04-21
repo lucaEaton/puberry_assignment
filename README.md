@@ -51,8 +51,7 @@ or previously attempted but scored under 70% (`curr_score ≤ 70`)
 
 ## frontend
 Built using vanilla JavaScript, HTML, and CSS, it runs separately using Vite. The frontend communicates with
-the backend using `fetch()`, which called to the FastAPI REST API. Pages are organized as folder so the URLs and stand
-to be more professional (with /quiz instead of /quiz.html as the url for example)
+the backend using `fetch()`, which called to the FastAPI REST API. Pages are organized as folder so the URLs to be as clean and clear as possible (with /quiz instead of /quiz.html as the url for example)
 
 # examples of usage using libcurl
 
