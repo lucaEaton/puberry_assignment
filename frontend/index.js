@@ -12,6 +12,7 @@ function getStudent() {
         .then(data => {
             document.getElementById("student").innerText = data.name
             document.getElementById("student_points").innerText = data.user_points
+            sessionStorage.setItem("points", data.user_points)
         })
 }
 
@@ -41,10 +42,15 @@ function getLessonPlans() {
                 }else{
                     div = document.createElement("div")
                     div.classList.add("lesson-card")
-                    div.innerHTML =
-                         `
-                         <h3>${lesson.title}: ${lesson.content}</h3>
-                         `
+                    div.innerHTML = `
+                        <h3>${lesson.title}: ${lesson.content}</h3>
+                        ${lesson.is_complete ? '<p>✅ Completed!</p>' : ''}
+                    `
+                    div.onclick = function() {
+                        sessionStorage.setItem("lessonId", lesson.lesson_id)
+                        console.log(sessionStorage.getItem("lessonId"))
+                        window.location.href = "/quiz/"
+                    }
                 }
                 document.getElementById("lesson_blocks").appendChild(div)
             })

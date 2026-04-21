@@ -1,6 +1,4 @@
-
-
-.page {
+.body{
     background: mintcream;
 }
 .header {
@@ -46,6 +44,8 @@
 }
 
 .lesson-card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
     background: white;
     border: 2px solid cornflowerblue;
     border-radius: 12px;
@@ -53,6 +53,11 @@
     margin: 10px;
     width: 300px;;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(100, 149, 237, 0.3);
 }
 
 .lesson-card h3 {
