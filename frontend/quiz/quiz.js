@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             // search the json like an array
-           qData = data.find(lesson => lesson.lesson_id == sessionStorage.getItem("lessonId"))
+            qData = data.find(lesson => lesson.lesson_id == sessionStorage.getItem("lessonId"))
             document.getElementById("title").innerText = qData.title + "'s Quiz"
             displayQ()
         })
@@ -87,7 +87,7 @@ function submitAnswer(a) {
             .then(response => response.json())
             .then(result => {
                 score = result.score
-                const oldScore = qData.curr_score
+                const oldScore = qData.current_score
                 const wasComplete = qData.is_complete
 
                 if (result.passed && (!wasComplete || oldScore <= 70)) {
@@ -96,8 +96,8 @@ function submitAnswer(a) {
                     sessionStorage.setItem("points", newPoints)
                     fetch(`http://127.0.0.1:8000/students/1/points?points=${newPoints}`, {method: "PUT"})
                     showComplete(`<p>You've earned 10 coins! Total: ${newPoints}</p>`)
-                } else if (result.passed) {
-                    showComplete(`<p></p>`)
+                } else if (wasComplete) {
+                    showComplete(`<p>Practice complete! Keep it up.</p>`)
                 } else {
                     showComplete(`<p>Need at least 70% to earn coins. Try again!</p>`)
                 }
