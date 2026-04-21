@@ -21,8 +21,6 @@ function getStudent() {
  * the current stored lesson plans
  * we make sure to lock any further lessons so that learning is done sequentially
  *
- * We want to make these clickable buttons in the future however for now they are a display unit
- *
  */
 function getLessonPlans() {
     fetch('http://127.0.0.1:8000/lessons')
@@ -30,7 +28,7 @@ function getLessonPlans() {
         .then(data => {
             console.log(data.length);
             data.forEach((lesson, index) => {
-                let div = undefined
+                let div
                 if (index > 0 && !data[index-1].is_complete){
                     div = document.createElement("div")
                      div.classList.add("lesson-card")
@@ -42,10 +40,19 @@ function getLessonPlans() {
                 }else{
                     div = document.createElement("div")
                     div.classList.add("lesson-card")
-                    div.innerHTML = `
-                        <h3>${lesson.title}: ${lesson.content}</h3>
-                        ${lesson.is_complete ? '<p>✅ Completed!</p>' : ''}
-                    `
+                    if(lesson.current_score !== 0){
+                        div.innerHTML =
+                                    `
+                                    <h3>${lesson.title}: ${lesson.content}</h3>
+                                    ${lesson.is_complete ? `<p>✅ Completed! Highest Score: ${lesson.current_score}%</p>` 
+                                    : `<p>Highest Score: ${lesson.current_score}%</p>`}
+                                    `
+                    }else{
+                        div.innerHTML =
+                                    `
+                                    <h3>${lesson.title}: ${lesson.content}</h3>
+                                    `
+                    }
                     div.onclick = function() {
                         sessionStorage.setItem("lessonId", lesson.lesson_id)
                         console.log(sessionStorage.getItem("lessonId"))

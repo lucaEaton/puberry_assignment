@@ -41,6 +41,18 @@ function displayQ() {
     document.getElementById("questions_block").appendChild(div)
 }
 
+// this method allows for cleaner reading code as using this before without this method, was adding major length
+// to our script
+function showComplete(message = "") {
+    document.getElementById("questions_block").innerHTML = `
+        <div class="question-card">
+            <h2>Quiz Complete!</h2>
+            <h3>Your score: ${Math.round(score)}%</h3>
+            ${message}
+            <button class="submit-button" onclick="window.location.href='/'">Back to Home</button>
+        </div>
+    `
+}
 
 function submitAnswer(a) {
     let currentIndex = qData.quiz.questions[qIndex].answer
@@ -52,67 +64,31 @@ function submitAnswer(a) {
     if (qIndex < qData.quiz.questions.length) {
         displayQ()
     } else {
-        // I do this our qData gets updated when we fetch,
-        // this wasn't allowing me to provide points to someone that, even though they may have completed the quiz,
-        // they haven't scored that 70 for points and may want to try again.
+        // saving oldScore and wasComplete before the PUT updates qData,
+        // this ensures someone who completed but scored under 70
+        // can still earn points on a passing retry
         const oldScore = qData.curr_score
         const wasComplete = qData.is_complete
         fetch(`http://127.0.0.1:8000/quiz/${sessionStorage.getItem("lessonId")}/${Math.round(score)}`, {
             method: "PUT"
         })
             .then(response => response.json())
-            .then(data => {
-                if (Math.round(score) > 70) {
-                    if (!wasComplete|| oldScore <= 70) {
-                        let currentPoints = parseInt(sessionStorage.getItem("points")) || 0
-                        let newPoints = currentPoints + 10
-                        sessionStorage.setItem("points", newPoints)
-
-                        fetch(`http://127.0.0.1:8000/students/1/points?points=${newPoints}`, {
-                            method: "PUT"
-                        })
-
-                        document.getElementById("questions_block").innerHTML =
-                            `
-                            <div class="question-card">
-                            <h2>Quiz Complete!</h2>
-                            <h3>Your score: ${Math.round(score)}%</h3>
-                            <p>You've earned 10 points! Total: ${newPoints}</p>
-                            <button class="submit-button" onclick="window.location.href='/'">Back to Home</button>
-                            </div>
-                            `
-                    } else {
-                        document.getElementById("questions_block").innerHTML =
-                            `
-                            <div class="question-card">
-                            <h2>Quiz Complete!</h2>
-                            <h3>Your score: ${Math.round(score)}%</h3>
-                            <button class="submit-button" onclick="window.location.href='/'">Back to Home</button>
-                            </div>
-                            `
-                    }
+            .then(() => {
+                if (Math.round(score) > 70 &&( !wasComplete || oldScore <= 70)) {
+                    let currentPoints = parseInt(sessionStorage.getItem("points")) || 0
+                    let newPoints = currentPoints + 10
+                    sessionStorage.setItem("points", newPoints)
+                    fetch(`http://127.0.0.1:8000/students/1/points?points=${newPoints}`, { method: "PUT" })
+                    showComplete(`<p>You've earned 10 points! Total: ${newPoints}</p>`)
+                } else if (Math.round(score) > 70) {
+                    showComplete(`<p></p>`)
                 } else {
-                    document.getElementById("questions_block").innerHTML =
-                        `
-                        <div class="question-card">
-                        <h2>Quiz Complete!</h2>
-                        <h3>Your score: ${Math.round(score)}%</h3>
-                        <p>Need Atleast a 70% to earn some points. Why Don't You Try Again!</p>
-                        <button class="submit-button" onclick="window.location.href='/'">Back to Home</button>
-                        </div>
-                        `
+                    showComplete(`<p>Need at least 70% to earn points. Try again!</p>`)
                 }
             })
             .catch(error => {
                 console.log("PUT failed:", error)
-                // still show completion screen even if save fails
-                document.getElementById("questions_block").innerHTML = `
-                    <div class="question-card">
-                        <h2>Quiz Complete!</h2>
-                        <h3>Your score: ${Math.round(score)}%</h3>
-                        <button class="submit-button" onclick="window.location.href='/'">Back to Home</button>
-                    </div>
-                `
+                showComplete()
             })
     }
 }
