@@ -19,6 +19,7 @@ I also utilize `Pydantic` for data validation and base models, and `Uvicorn` as 
 ## API breakdown
 
 ### Routes for Lesson Management
+
 - Method : `GET`
   - Route : `/lessons`
     - What it does: `Gets all the lessons`
@@ -27,12 +28,14 @@ I also utilize `Pydantic` for data validation and base models, and `Uvicorn` as 
     - What it does: `Submits answers to the backend, validates them, calculates score, updates completion status and highest score`
 
 ### Routes for Student Management
+
 - Method : `GET`
   - Route : `/students/{student_id}`
     - What it does: `Get student profile and point balance`
 - Method : `PUT` 
   - Route : `/students/{student_id}/points?points={n}` 
     - What it does: `Update student coin balance`
+
 
 - A student earns 10 coins when they score ≥ 70% on a quiz
 - Points are only awarded if the student has never passed before (`is_complete: false`) 
@@ -51,7 +54,7 @@ gets all the lessons
 curl http://127.0.0.1:8000/lessons
 ```
 
-submit quiz answers
+submit quiz answers (for example purposes this being for lesson one's quiz)
 ```bash
 curl -X POST http://127.0.0.1:8000/quiz/1/submit \
   -H "Content-Type: application/json" \
