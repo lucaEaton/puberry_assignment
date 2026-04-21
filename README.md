@@ -9,8 +9,8 @@ completion status and highest score for each lesson
 - `students.json` : stores the student's profile and in service currency
 
 We write and read from the JSON files with each request using helper methods :
-- `load_lesson()`
-- `save_lesson()`
+- `load_lessons()`
+- `save_lessons()`
 - `load_student()`
 - `save_students()`
 
@@ -35,7 +35,14 @@ I also utilize `Pydantic` for data validation and base models, and `Uvicorn` as 
 - Method : `PUT` 
   - Route : `/students/{student_id}/points?points={n}` 
     - What it does: `Update student coin balance`
+   
+## Reset
+- Method : `PUT`
+  - Route : `/reset`
+    - What it does: `Resets all lesson completion, scores, and student points back to zero`
 
+Just note for reset button, this is done for "testing purposes", my goal was to try and break my application to see bugs or test cases,
+just allows for me to reset data so that I can test different inputs on lessons without having to touch the JSON file.
 
 - A student earns 10 coins when they score ≥ 70% on a quiz
 - Points are only awarded if the student has never passed before (`is_complete: false`) 
@@ -69,6 +76,11 @@ curl http://127.0.0.1:8000/students/1
 update student points
 ```bash
 curl -X PUT "http://127.0.0.1:8000/students/1/points?points=10"
+```
+
+reset all progress
+```bash
+curl -X PUT http://127.0.0.1:8000/reset
 ```
 
 # set up process
@@ -108,10 +120,10 @@ To fully test,
  
 1. Start both the backend and frontend servers (see setup above)
 2. Open `http://localhost:5173` in your browser
-3. You will be greeted with the student's name and current coin balance
-4. Click Lesson One to start the quiz
-5. Answer all 3 questions, score ≥ 70% to earn 10 coins
-6. Return to the home page, coin balance updates and Lesson 2 unlocks
+3. Click Lesson One to start the quiz
+4. Answer all 3 questions, score ≥ 70% to earn 10 coins
+5. Return to the home page, coin balance updates and Lesson 2 unlocks
+6. Click My Profile to view lesson completion status and coin balance
 7. Complete Lesson Two to finish demo
 
 ## JSON Data Format
@@ -141,8 +153,8 @@ To fully test,
                 }
             ]
         },
-        "is_complete": true,
-        "current_score": 100.0
+        "is_complete": false,
+        "current_score": 0.0
     },
     {
         "lesson_id": 2,
@@ -166,8 +178,8 @@ To fully test,
                 }
             ]
         },
-        "is_complete": true,
-        "current_score": 100.0
+        "is_complete": false,
+        "current_score": 0.0
     }
 ]
 ```
