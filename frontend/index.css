@@ -109,3 +109,27 @@ body {
     flex-direction: column;
     gap: 8px;
 }
+
+.progress-container {
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    color: cornflowerblue;
+}
+
+.progress-bar {
+    width: 300px;
+    height: 20px;
+    background: white;
+    border: 2px solid cornflowerblue;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 8px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: cornflowerblue;
+    border-radius: 12px;
+    transition: width 0.5s ease;  /* smooth animation */
+    width: 0%;
+}
