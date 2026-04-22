@@ -212,78 +212,38 @@ To fully test,
 ### answers.json
 ```json
 [
-    {
-        "lesson_id": 1,
-        "title": "Lesson One",
-        "content": "Addition",
-        "quiz": {
-            "questions": [
-                {
-                    "question_text": "Q1: 2 + 2 = ?",
-                    "choices": [
-                        "3",
-                        "5",
-                        "6",
-                        "4"
-                    ]
-                },
-                {
-                    "question_text": "Q2: Is 10 - 2 = 8 ?",
-                    "choices": [
-                        "True",
-                        "False"
-                    ]
-                },
-                {
-                    "question_text": "Q3: 20 + 74 = ?",
-                    "choices": [
-                        "92",
-                        "-54",
-                        "95",
-                        "94"
-                    ]
-                }
-            ]
+  {
+    "lesson_id": 1,
+    "quiz": {
+      "questions": [
+        {
+          "answer": "4"
         },
-        "is_complete": false,
-        "current_score": 0.0
-    },
-    {
-        "lesson_id": 2,
-        "title": "Lesson Two",
-        "content": "Subtraction",
-        "quiz": {
-            "questions": [
-                {
-                    "question_text": "Q1: 10 - 3 = ?",
-                    "choices": [
-                        "-7",
-                        "8",
-                        "9",
-                        "7"
-                    ]
-                },
-                {
-                    "question_text": "Q2: Is 1 - 5 = 4 ?",
-                    "choices": [
-                        "True",
-                        "False"
-                    ]
-                },
-                {
-                    "question_text": "Q3: 1000 - 250 = ?",
-                    "choices": [
-                        "500",
-                        "-250",
-                        "800",
-                        "750"
-                    ]
-                }
-            ]
+        {
+          "answer": "True"
         },
-        "is_complete": false,
-        "current_score": 0.0
+        {
+          "answer": "94"
+        }
+      ]
     }
+  },
+  {
+    "lesson_id": 2,
+    "quiz": {
+      "questions": [
+        {
+          "answer": "7"
+        },
+        {
+          "answer": "False"
+        },
+        {
+          "answer": "750"
+        }
+      ]
+    }
+  }
 ]
 ```
 
