@@ -38,7 +38,7 @@ function displayQ() {
                 <button class="submit-button" onclick="submitAnswer('False')">False</button>
                 `
     } else if (currentIndex.choices && currentIndex.choices.length > 0) {
-        let allChoices = [...currentIndex.choices, currentIndex.answer]
+        let allChoices = [...currentIndex.choices]
         allChoices.sort(() => Math.random() - 0.5)
 
         allChoices.forEach(choice => {

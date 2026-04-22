@@ -7,24 +7,27 @@
             "questions": [
                 {
                     "question_text": "Q1: 2 + 2 = ?",
-                    "answer": "4",
                     "choices": [
                         "3",
                         "5",
-                        "6"
+                        "6",
+                        "4"
                     ]
                 },
                 {
                     "question_text": "Q2: Is 10 - 2 = 8 ?",
-                    "answer": "True"
+                    "choices": [
+                        "True",
+                        "False"
+                    ]
                 },
                 {
                     "question_text": "Q3: 20 + 74 = ?",
-                    "answer": "94",
                     "choices": [
                         "92",
                         "-54",
-                        "95"
+                        "95",
+                        "94"
                     ]
                 }
             ]
@@ -40,24 +43,27 @@
             "questions": [
                 {
                     "question_text": "Q1: 10 - 3 = ?",
-                    "answer": "7",
                     "choices": [
                         "-7",
                         "8",
-                        "9"
+                        "9",
+                        "7"
                     ]
                 },
                 {
                     "question_text": "Q2: Is 1 - 5 = 4 ?",
-                    "answer": "False"
+                    "choices": [
+                        "True",
+                        "False"
+                    ]
                 },
                 {
                     "question_text": "Q3: 1000 - 250 = ?",
-                    "answer": "750",
                     "choices": [
                         "500",
                         "-250",
-                        "800"
+                        "800",
+                        "750"
                     ]
                 }
             ]

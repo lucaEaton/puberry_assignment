@@ -1,0 +1,34 @@
+[
+  {
+    "lesson_id": 1,
+     "quiz": {
+      "questions": [
+        {
+          "answer": "4"
+        },
+        {
+          "answer": "True"
+        },
+         {
+          "answer": "94"
+        }
+      ]
+    }
+  },
+  {
+    "lesson_id": 2,
+     "quiz": {
+      "questions": [
+        {
+          "answer": "7"
+        },
+        {
+          "answer": "False"
+        },
+         {
+          "answer": "750"
+        }
+      ]
+    }
+  }
+]
