@@ -59,6 +59,11 @@ def save_lessons(lessons):
         json.dump(lessons, f, indent=4)
 
 
+def load_answers(answers_path: str = "./backend/answers.json"):
+    with open(answers_path) as f:
+        return json.load(f)
+
+
 """
  represent a question in a given quiz
  this utilizes a nested model, being a base model inside a base model
@@ -67,7 +72,6 @@ def save_lessons(lessons):
 
 class Question(BaseModel):
     question_text: str
-    answer: str
     choices: list[str] = []
 
 
@@ -216,26 +220,29 @@ def reset():
 @app.post("/quiz/{lesson_id}/submit")
 def submit_quiz(lesson_id: int, submission: Submission):
     lessons = load_lessons()
+    correct_answers = load_answers()
     for lesson in lessons:
         if lesson["lesson_id"] == lesson_id:
-            questions = lesson["quiz"]["questions"]
-            correct = 0
-            for i, question in enumerate(questions):
-                if i < len(questions):
-                    if submission.answers[i] == question["answer"]:
-                        correct += 1
-            score = (correct / len(questions)) * 100
-            passed = score >= 70
-            if passed:
-                lesson["is_complete"] = True
-            if lesson["current_score"] < score:
-                lesson["current_score"] = score
-            save_lessons(lessons)
-            return {
-                "score": round(score),
-                "passed": passed,
-                "correct": correct,
-                "total": len(questions)
-            }
+            for answer_key in correct_answers:
+                if answer_key["lesson_id"] == lesson_id:
+                    questions = answer_key["quiz"]["questions"]
+                    correct = 0
+                    for i, question in enumerate(questions):
+                        if i < len(questions):
+                            if submission.answers[i] == question["answer"]:
+                                correct += 1
+                    score = (correct / len(questions)) * 100
+                    passed = score >= 70
+                    if passed:
+                        lesson["is_complete"] = True
+                    if lesson["current_score"] < score:
+                        lesson["current_score"] = score
+                    save_lessons(lessons)
+                    return {
+                        "score": round(score),
+                        "passed": passed,
+                        "correct": correct,
+                        "total": len(questions)
+                    }
 
     raise HTTPException(status_code=404, detail="Lesson not found")
