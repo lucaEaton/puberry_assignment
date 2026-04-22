@@ -8,11 +8,14 @@ a mock database
 completion status and highest score for each lesson
 - `students.json` : stores the student's profile and in service currency
 
+Answers are stored separately from the lessons.json to avoid exposing the answers to the client/frontend. They are stored within `answers.json`
+
 We write and read from the JSON files with each request using helper methods :
 - `load_lessons()`
 - `save_lessons()`
 - `load_student()`
 - `save_students()`
+- `load_answers()`
 
 I also utilize `Pydantic` for data validation and base models, and `Uvicorn` as the server to run the FastAPI application
 
@@ -204,4 +207,83 @@ To fully test,
         ]
     }
 ]
+
 ```
+### answers.json
+```json
+[
+    {
+        "lesson_id": 1,
+        "title": "Lesson One",
+        "content": "Addition",
+        "quiz": {
+            "questions": [
+                {
+                    "question_text": "Q1: 2 + 2 = ?",
+                    "choices": [
+                        "3",
+                        "5",
+                        "6",
+                        "4"
+                    ]
+                },
+                {
+                    "question_text": "Q2: Is 10 - 2 = 8 ?",
+                    "choices": [
+                        "True",
+                        "False"
+                    ]
+                },
+                {
+                    "question_text": "Q3: 20 + 74 = ?",
+                    "choices": [
+                        "92",
+                        "-54",
+                        "95",
+                        "94"
+                    ]
+                }
+            ]
+        },
+        "is_complete": false,
+        "current_score": 0.0
+    },
+    {
+        "lesson_id": 2,
+        "title": "Lesson Two",
+        "content": "Subtraction",
+        "quiz": {
+            "questions": [
+                {
+                    "question_text": "Q1: 10 - 3 = ?",
+                    "choices": [
+                        "-7",
+                        "8",
+                        "9",
+                        "7"
+                    ]
+                },
+                {
+                    "question_text": "Q2: Is 1 - 5 = 4 ?",
+                    "choices": [
+                        "True",
+                        "False"
+                    ]
+                },
+                {
+                    "question_text": "Q3: 1000 - 250 = ?",
+                    "choices": [
+                        "500",
+                        "-250",
+                        "800",
+                        "750"
+                    ]
+                }
+            ]
+        },
+        "is_complete": false,
+        "current_score": 0.0
+    }
+]
+```
+
