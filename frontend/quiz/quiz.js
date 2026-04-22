@@ -62,7 +62,8 @@ function displayQ() {
 
 /*
  * this method allows for cleaner reading code as using this before without this method, was adding major length
- */ to our script
+ *  to our script
+ */
 function showComplete(message = "") {
     document.getElementById("questions_block").innerHTML = `
         <div class="question-card">
